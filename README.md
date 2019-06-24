@@ -1,5 +1,5 @@
 # ImageToFit.js
-Image To Fit görsellerinizin yatay, dikey veya kare olduğunu algılar ve görsellerinizi içerisinde bulunduğu tutucuya sığdırır.
+Image To Fit görsellerinizin yatay, dikey veya kare olduğunu algılar ve görsellerinizi içerisinde bulunduğu kapsayıcıya sığdırır.
 
 ## Nasıl kullanılır?
 **ImageToFit.js** kütüphanesini sayfanızın HEAD bölümüne veya BODY bölümünün en altına ekleyin. 

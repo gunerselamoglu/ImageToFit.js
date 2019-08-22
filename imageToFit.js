@@ -31,7 +31,7 @@ var imageToFit = (function() {
 
         const toFitImages = document.querySelectorAll("[image-to-fit]");
 
-        Array.prototype.forEach.call(toFitImages, function(image) {
+        toFitImages.forEach(function(image){
 
             var pNodeWidth = Math.floor(image.parentNode.clientWidth),
                 pNodeHeight = Math.floor(image.parentNode.clientHeight),

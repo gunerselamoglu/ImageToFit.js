@@ -1,5 +1,5 @@
 ﻿/*!
- * Image To Fit v1.0.0 (https://github.com/gunerninomanfredi/ImageToFit.js)
+ * Image To Fit v1.0.0 (https://github.com/gunerselamoglu/ImageToFit.js)
  * Copyright (c) 2019 Güner Selamoğlu
  * Licensed under the MIT license
  */

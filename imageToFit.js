@@ -25,9 +25,9 @@ function ready(callback) {
     });
 }
 
-var imageToFit = (function() {
+const imageToFit = (function() {
 
-    function init() {
+    const init = function() {
 
         const toFitImages = document.querySelectorAll("[image-to-fit]");
 
@@ -40,6 +40,7 @@ var imageToFit = (function() {
                 imageHCalc = (pNodeHeight / 100) * fitPercent,
                 imageWCalc = (pNodeWidth / 100) * fitPercent;
 
+
             // If use just attribute with out percent value    
             if (!image.getAttribute("image-to-fit").includes("%")) {
                 imageHCalc = pNodeHeight;
@@ -48,52 +49,55 @@ var imageToFit = (function() {
 
             theImage.src = image.getAttribute("src");
 
-            var imageW = theImage.width,
-                imageH = theImage.height;
+            const imageSetSize = function(imageWidth,imageHeight){
+                
+                var imageW = imageWidth,
+                    imageH = imageHeight;
 
-            // If the image is larger than the parent
-            if (imageW >= pNodeWidth || imageH >= pNodeHeight) {
-
-                if (fitPercent <= 100 || isNaN(fitPercent)) {
-                    // Image is Horizontal
-                    if (imageW > imageH) {
-                        image.removeAttribute("height");
-                        image.width = imageWCalc;
-
-                        if (image.height > pNodeHeight) {
-                            image.removeAttribute("width");
-                            image.height = imageHCalc;
-                        }
-
-                        // Image is Vertical
-                    } else if (imageH > imageW) {
-                        image.removeAttribute("width");
-                        image.height = imageHCalc;
-
-                        if (image.width > pNodeWidth) {
+                // If the image is larger than the parent
+                if (imageW >= pNodeWidth || imageH >= pNodeHeight) {
+                    if (fitPercent <= 100 || isNaN(fitPercent)) {
+                        // Image is Horizontal
+                        if (imageW > imageH) {
                             image.removeAttribute("height");
                             image.width = imageWCalc;
-                        }
-                        // Imagse is Square
-                    } else if (imageH == imageW) {
-                        if (imageHCalc < pNodeWidth) {
+
+                            if (image.height > pNodeHeight) {
+                                image.removeAttribute("width");
+                                image.height = imageHCalc;
+                            }
+
+                            // Image is Vertical
+                        } else if (imageH > imageW) {
                             image.removeAttribute("width");
                             image.height = imageHCalc;
-                        } else {
-                            image.removeAttribute("height");
-                            image.width = imageWCalc;
+
+                            if (image.width > pNodeWidth) {
+                                image.removeAttribute("height");
+                                image.width = imageWCalc;
+                            }
+                            // Imagse is Square
+                        } else if (imageH == imageW) {
+                            if (imageHCalc < pNodeWidth) {
+                                image.removeAttribute("width");
+                                image.height = imageHCalc;
+                            } else {
+                                image.removeAttribute("height");
+                                image.width = imageWCalc;
+                            }
                         }
                     }
+                } else {
+                    image.removeAttribute("height");
+                    image.removeAttribute("width");
                 }
-            } else {
-                image.removeAttribute("height");
-                image.removeAttribute("width");
-            }
+            }  
 
+            theImage.onload = function() {
+                imageSetSize(this.width,this.height)
+            }
         });
     }
-
-    init();
 
     return {
         init: init
